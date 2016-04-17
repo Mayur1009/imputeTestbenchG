@@ -1,0 +1,17 @@
+4f933b233ec56ae0ee6c747c4e928d62 *DESCRIPTION
+1ea6222a7478926f5db7d96450091059 *NAMESPACE
+c173f572f6d5ce3ccba4b8be023eb5f7 *R/append_method.R
+d669d33da67085fe3b536627fcd7a9af *R/error_functions.R
+401b4bfc21071a32d0960e1b495f31c8 *R/impute_errors.R
+803029808c7a3361ca3a5fe5d4a7473b *R/plot_errors.R
+5c37869e953de289f33b5717a3d4fdfa *build/vignette.rds
+155d7f30e87b1781bb59af8da7247618 *inst/doc/imputeTestbench-Vignette.R
+c850a692fde45c9f55f45442f1f01339 *inst/doc/imputeTestbench-Vignette.Rmd
+de0ada52dc4e87abd4a55527a404daba *inst/doc/imputeTestbench-Vignette.html
+69c68009f9e2f37fd5270640b5c4a4cb *man/append_method.Rd
+29fc1b5a9445b9947a4274a508667494 *man/impute_errors.Rd
+a1b43f0d6f7fed5e730b2234eb58d0b3 *man/mae.Rd
+0d6cdfb32eb78266af7dc3eec091c297 *man/mape.Rd
+2310169b56c8ff9707f1e6e69b89e34e *man/plot_errors.Rd
+472e93fa5117100e12f5bb00358cb759 *man/rmse.Rd
+c850a692fde45c9f55f45442f1f01339 *vignettes/imputeTestbench-Vignette.Rmd
