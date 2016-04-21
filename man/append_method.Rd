@@ -8,7 +8,7 @@ append_method(existing_method, dataIn, missPercentFrom, missPercentTo, interval,
   repetition, errorParameter, MethodPath, MethodName)
 }
 \arguments{
-\item{existing_method}{as output obtained from impute_error() function}
+\item{existing_method}{as Error observations for different methods}
 
 \item{dataIn}{as imput time series for testing}
 

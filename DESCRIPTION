@@ -1,7 +1,7 @@
 Package: imputeTestbench
 Type: Package
 Title: Test Bench for Missing Data Imputing Models/Methods Comparison
-Version: 0.1.0
+Version: 1.1.0
 Author: Neeraj Bokde
 Maintainer: Neeraj Bokde <neerajdhanraj@gmail.com>
 Description: Provides a Test bench for comparison of missing
@@ -16,6 +16,6 @@ RoxygenNote: 5.0.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2016-04-17 17:32:07 UTC; NEERAJ
+Packaged: 2016-04-20 19:09:41 UTC; NEERAJ
 Repository: CRAN
-Date/Publication: 2016-04-17 20:11:34
+Date/Publication: 2016-04-21 15:51:50

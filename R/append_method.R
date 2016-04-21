@@ -1,6 +1,6 @@
 #' To attach and compare new method to existing comparison study done with function 'impute_errors()'
 #'
-#' @param existing_method as output obtained from impute_error() function
+#' @param existing_method as Error observations for different methods
 #' @param dataIn as imput time series for testing
 #' @param  missPercentFrom as variable from which percent of missing values to be considered
 #' @param  missPercentTo as variable to state upto what percent missing values are to be considered
@@ -118,6 +118,14 @@ append_method <- function(existing_method, dataIn, missPercentFrom, missPercentT
           gh[i] <- mape((dataIn1 - d), dataIn1)
           parameter <- "MAPE Plot"
         }
+        if(errorParameter[1] == 4)
+        {
+          newPar <- parse(text = errorParameter[2])
+          newPar <- eval(newPar)
+          newPar1 <- newPar$value(dataIn1, d)
+          gh[i] <- newPar1
+          parameter <- errorParameter[3]
+        }
     }
 
 
@@ -134,5 +142,6 @@ append_method <- function(existing_method, dataIn, missPercentFrom, missPercentT
   #existing_method[length(existing_method)+1] <- data.frame(e[-1])
   existing_method[[paste(MethodName)]] <- e[-1]
   #existing_method[length(existing_method)+1] <- e
+  options(warn=-1)
   return(Proposed_Method = existing_method)
 }

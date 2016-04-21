@@ -134,6 +134,14 @@ impute_errors <- function(dataIn, missPercentFrom, missPercentTo, interval, repe
           ghnew[i] <- mape((dataIn1 - dnew), dataIn1)
           parameter <- "MAPE Plot"
         }
+        if(errorParameter[1] == 4)
+        {
+          newPar <- parse(text = errorParameter[2])
+          newPar <- eval(newPar)
+          newPar <- newPar$value(dataIn1, dnew)
+          ghnew[i] <- newPar
+          parameter <- errorParameter[3]
+        }
       }
 
 
@@ -154,6 +162,16 @@ impute_errors <- function(dataIn, missPercentFrom, missPercentTo, interval, repe
         gh[i] <- mape((dataIn1 - d), dataIn1)
         gh1[i] <- mape((dataIn1 - d1), dataIn1)
         parameter <- "MAPE Plot"
+      }
+      if(errorParameter[1] == 4)
+      {
+        newPar <- parse(text = errorParameter[2])
+        newPar <- eval(newPar)
+        newPar1 <- newPar$value(dataIn1, d)
+        gh[i] <- newPar1
+        newPar2 <- newPar$value(dataIn1, d1)
+        gh1[i] <- newPar2
+        parameter <- errorParameter[3]
       }
     }
 
@@ -192,7 +210,7 @@ impute_errors <- function(dataIn, missPercentFrom, missPercentTo, interval, repe
 
     h <- h + geom_line(data=gnew,aes(color= MethodName))
   }
-
+  options(warn=-1)
 
   #axis(1, labels = e)
  #return(list(Missing_Percent = fx[-1], Historic_Mean = e[-1], Interpolation = e1[-1], Proposed_Method = enew[-1], Plot = h))
