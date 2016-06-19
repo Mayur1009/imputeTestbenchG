@@ -101,3 +101,9 @@ where
 - `MethodName` is name for function for the proposed imputation method
 
 
+Similarly, user can remove an imputation method from test bench with following function
+```{r}
+#cc <- remove_method(existing_method = bb, method_number = 1)
+#cc
+#plot_errors(cc)
+```

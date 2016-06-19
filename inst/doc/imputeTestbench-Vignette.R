@@ -21,3 +21,8 @@ plot_errors(q)
 #bb
 #plot_errors(bb)
 
+## ------------------------------------------------------------------------
+#cc <- remove_method(existing_method = bb, method_number = 1)
+#cc
+#plot_errors(cc)
+

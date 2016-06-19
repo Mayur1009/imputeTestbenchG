@@ -1,14 +1,14 @@
-2b928172c366eeed0b34f822ca709349 *DESCRIPTION
+2bf5d6cbc6fb1debc04b36c0e3f2b616 *DESCRIPTION
 3aa1b5a7ad17e70251402a8568e7732f *NAMESPACE
 d5161ad7ba19fd4bb7c7d1d883f3c2a5 *R/append_method.R
 d669d33da67085fe3b536627fcd7a9af *R/error_functions.R
-c2419560890742e49f4e98a6fc4ecdec *R/impute_errors.R
+fb3f52e457b0b924a1a7599e06b2e353 *R/impute_errors.R
 803029808c7a3361ca3a5fe5d4a7473b *R/plot_errors.R
 fa1b29da8cdb6069f5a2064c91804783 *R/remove_method.R
 5c37869e953de289f33b5717a3d4fdfa *build/vignette.rds
-155d7f30e87b1781bb59af8da7247618 *inst/doc/imputeTestbench-Vignette.R
-c850a692fde45c9f55f45442f1f01339 *inst/doc/imputeTestbench-Vignette.Rmd
-83881239e48ea717a468f7ae5f7a548a *inst/doc/imputeTestbench-Vignette.html
+8adb2c03237ce74658db496a18e1d18d *inst/doc/imputeTestbench-Vignette.R
+16f9551f5a1f1af4a6bf00ef47a60ecc *inst/doc/imputeTestbench-Vignette.Rmd
+0c6761b6aef38e686ddc49bda63a03d4 *inst/doc/imputeTestbench-Vignette.html
 8bc7d97340ba8c997e9118b566649c43 *man/append_method.Rd
 29fc1b5a9445b9947a4274a508667494 *man/impute_errors.Rd
 a1b43f0d6f7fed5e730b2234eb58d0b3 *man/mae.Rd
@@ -16,4 +16,4 @@ a1b43f0d6f7fed5e730b2234eb58d0b3 *man/mae.Rd
 2310169b56c8ff9707f1e6e69b89e34e *man/plot_errors.Rd
 5d5542edaa215189f1bf4a0ccfb39a94 *man/remove_method.Rd
 472e93fa5117100e12f5bb00358cb759 *man/rmse.Rd
-c850a692fde45c9f55f45442f1f01339 *vignettes/imputeTestbench-Vignette.Rmd
+16f9551f5a1f1af4a6bf00ef47a60ecc *vignettes/imputeTestbench-Vignette.Rmd

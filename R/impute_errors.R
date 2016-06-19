@@ -84,8 +84,14 @@ impute_errors <- function(dataIn, missPercentFrom, missPercentTo, interval, repe
     #repetition <- 5      # number of repetition
     a <- length(dataIn)
     b <- a * x
-    b <- abs(b)
-    c <- a-b
+    b <- round(b)
+    ###c <- a-b
+    c <- sample(1:a, 1, replace = TRUE)
+    while(c > a-b)
+    {
+      c <- sample(1:a, 1, replace = TRUE)
+    }
+
     out <- NULL
 
     for(i in 1:repetition)
@@ -100,6 +106,7 @@ impute_errors <- function(dataIn, missPercentFrom, missPercentTo, interval, repe
       out[i] <- data.frame(dataIn)
     }
 
+#return(out)
     gh <- NULL
     gh1 <- NULL
     ghnew <- NULL
