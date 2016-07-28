@@ -5,10 +5,10 @@
 \title{Function working as testbench for comparison of imputing models}
 \usage{
 impute_errors(dataIn, missPercentFrom, missPercentTo, interval, repetition,
-  errorParameter, MethodPath, MethodName)
+  errorParameter, MethodPath, MethodName, random, startPoint, patchLength)
 }
 \arguments{
-\item{dataIn}{as imput time series for testing}
+\item{dataIn}{as input data for testing}
 
 \item{missPercentFrom}{as variable from which percent of missing values to be considered}
 
@@ -23,6 +23,12 @@ impute_errors(dataIn, missPercentFrom, missPercentTo, interval, repetition,
 \item{MethodPath}{as location of function for the proposed imputation method}
 
 \item{MethodName}{as name for function for the proposed imputation method}
+
+\item{random}{as parameter to decide missing value scheme}
+
+\item{startPoint}{as index of missing patches in dataset when 'random = 0'}
+
+\item{patchLength}{as length of missing patches in dataset when 'random = 0'}
 }
 \value{
 Returns error comparison for imputation methods
@@ -33,5 +39,8 @@ Function working as testbench for comparison of imputing models
 \examples{
 # aa <- impute_errors()
 # aa
+
+# bb <- impute_errors(random = 0, startPoint = c(10, 20, 40), patchLength = c(3, 4, 5))
+# bb
 }
 

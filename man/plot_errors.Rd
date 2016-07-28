@@ -4,10 +4,14 @@
 \alias{plot_errors}
 \title{Function to plot the Error Comparison}
 \usage{
-plot_errors(dataIn)
+plot_errors(dataIn, plotType, ...)
 }
 \arguments{
 \item{dataIn}{as input data in list format (returned by function inpute_errors())}
+
+\item{plotType}{as parameter to decide Plot Type to achieve: 1: Barplot, 2: Line plot}
+
+\item{\dots}{as additive functions for plot}
 }
 \value{
 It returns the Error comparison for different methods
@@ -19,5 +23,12 @@ Function to plot the Error Comparison
 # aa <- impute_errors()
 # bb <- plot_errors(aa)
 # bb
+
+# cc <- impute_errors()
+# dd <- plot_errors(dataIn = cc, plotType = 1, main = "Bar plot",
+#         args.legend = list(x="topleft", bg = "NA"))
+
+# cc <- impute_errors()
+# dd <- plot_errors(dataIn = cc, plotType = 2)
 }
 

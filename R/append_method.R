@@ -1,7 +1,7 @@
 #' To attach and compare new method to existing comparison study done with function 'impute_errors()'
 #'
 #' @param existing_method as Error observations for different methods
-#' @param dataIn as imput time series for testing
+#' @param dataIn as input data for testing
 #' @param  missPercentFrom as variable from which percent of missing values to be considered
 #' @param  missPercentTo as variable to state upto what percent missing values are to be considered
 #' @param  interval as interval between consecutive missPercent values

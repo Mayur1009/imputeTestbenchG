@@ -1,6 +1,6 @@
 ---
 title: "imputeTestbench : Test bench for Missing Data Imputing Models/Methods Comparison"
-author: "Neeraj Bokde"
+author: "Neeraj Bokde   (http://www.neerajbokde.com/cran/imputetestbench)"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -30,7 +30,7 @@ The function `impute_errors()` is used to compare imputing methods with referenc
 
 where,
 
-- `dataIn` is imput time series for testing
+- `dataIn` is input data for testing
 - `missPercentFrom` is variable from which percent of missing values to be considered
 - `missPercentTo` is variable to state upto what percent missing values are to be considered
 - `interval` is interval between consecutive missPercent values
@@ -42,10 +42,13 @@ where,
 
 At simplest form, function `impute_errors()` can we used as:
 
-```{r}
+```{r, fig.height= 5, fig.width= 7.5}
 q <- impute_errors(datax)
 q
+# By default, the bar plot is used to show the comparison
 plot_errors(q)
+# Also, User can plot the comparison with line plot as:
+plot_errors(dataIn = q, plotType = 2)
 ```
 
 By default, this function compares two basic imputation methods, i.e. Historical means and Interpolation methods. The `plot_errors()` function is used to plot the comparison plots between different methods. This test bench allows to add one more imputing method to compare with already existing methods. The only care is to be takes as, the new imputing method is to be designed in function format such that it could return imputed data as output. Suppose, following function is the desired method to add in test bench.
@@ -91,7 +94,7 @@ If user wishes to add more than one imputation methods to test bench, the functi
 where
 
 - `existing_method` is output obtained from `impute_error()` function
-- `dataIn` is imput time series for testing
+- `dataIn` is input data for testing
 - `missPercentFrom` is variable from which percent of missing values to be considered
 - `missPercentTo` is variable to state upto what percent missing values are to be considered
 - `interval` is interval between consecutive missPercent values
@@ -106,4 +109,10 @@ Similarly, user can remove an imputation method from test bench with following f
 #cc <- remove_method(existing_method = bb, method_number = 1)
 #cc
 #plot_errors(cc)
+```
+
+To introduce missing patches as desired locations, `random` parameter is used. When `random = 1`, package itself inroduce missing values at completely random places, whereas when `random = 0`, it allows user to introduce missing patches as desired locations as shown in following code.
+```{r}
+dd <- impute_errors(random = 0, startPoint = c(10, 20, 30), patchLength = c(3, 4, 5))
+dd
 ```

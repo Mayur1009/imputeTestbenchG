@@ -1,7 +1,7 @@
 Package: imputeTestbench
 Type: Package
 Title: Test Bench for Missing Data Imputing Models/Methods Comparison
-Version: 1.2.0
+Version: 2.0.2
 Author: Neeraj Bokde
 Maintainer: Neeraj Bokde <neerajdhanraj@gmail.com>
 Description: Provides a Test bench for comparison of missing
@@ -11,13 +11,13 @@ Description: Provides a Test bench for comparison of missing
     to add multiple numbers of methods to the existing methods available in test bench.
 Imports: ggplot2, imputeTS, reshape2, methods, stats
 BugReports: https://github.com/neerajdhanraj/imputeTestbench/issues
-URL: http://www.neerajbokde.com/
+URL: http://www.neerajbokde.com/cran/imputetestbench
 License: GPL
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2016-06-19 10:14:55 UTC; NEERAJ
+Packaged: 2016-07-28 10:13:08 UTC; NEERAJ
 Repository: CRAN
-Date/Publication: 2016-06-19 16:41:19
+Date/Publication: 2016-07-28 17:28:31
