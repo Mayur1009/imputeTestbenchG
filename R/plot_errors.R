@@ -1,74 +1,80 @@
 #' Function to plot the Error Comparison
 #'
-#' @param  dataIn as input data in list format (returned by function inpute_errors())
-#' @param  \dots as additive functions for plot
-#' @param  plotType as parameter to decide Plot Type to achieve: 1: Barplot, 2: Line plot
-#' @return It returns the Error comparison for different methods
+#' @param dataIn an errprof object returned from \code{\link{impute_errors}}
+#' @param plotType chr string indicating plot type, accepted values are \code{"boxplot"}, \code{"bar"}, or \code{"line"}
+#' @param \dots arguments passed to or from other methods
+#'
+#' @return A ggplot object that can be further modified.  The entire range of errors are shown if \code{plotType = "boxplot"}, otherwise the averages are shown if \code{plotType = "bar"} or \code{"line"}.
+#'
 #' @importFrom  reshape2 melt
-#' @importFrom graphics barplot
+#' @import ggplot2
+#'
 #' @export
+#'
 #' @examples
-#' # aa <- impute_errors()
-#' # bb <- plot_errors(aa)
-#' # bb
+#' aa <- impute_errors()
+#' plot_errors(aa)
+#' plot_errors(aa, plotType = 'bar')
+#' plot_errors(aa, plotType = 'line')
+plot_errors <- function(dataIn, ...) UseMethod('plot_errors')
+
+#' @rdname plot_errors
 #'
-#' # cc <- impute_errors()
-#' # dd <- plot_errors(dataIn = cc, plotType = 1, main = "Bar plot",
-#' #         args.legend = list(x="topleft", bg = "NA"))
+#' @export
 #'
-#' # cc <- impute_errors()
-#' # dd <- plot_errors(dataIn = cc, plotType = 2)
+#' @method plot_errors errprof
+plot_errors.errprof <- function(dataIn, plotType = c('boxplot'), ...){
 
-plot_errors <- function(dataIn, plotType, ...)
-{
+  if(!plotType %in% c('boxplot', 'bar', 'line'))
+    stop('plotType must be boxplot, bar, or line')
 
-  if(!(hasArg(plotType)))
-  {
-    plotType <- 1
+  # boxplot
+  if(plotType == 'boxplot'){
+
+    toplo <- attr(dataIn, 'errall')
+    toplo <- melt(toplo)
+    percs <- dataIn$MissingPercent
+    toplo$L2 <- factor(toplo$L2, levels = unique(toplo$L2), labels = percs)
+    names(toplo) <- c('Error value', 'Percent of missing observations', 'Methods')
+
+    p <- ggplot(toplo, aes(x = `Percent of missing observations`, y = `Error value`)) +
+      ggtitle(dataIn$Parameter) +
+      geom_boxplot(aes(fill = Methods)) +
+      theme_bw()
+
+    return(p)
+
   }
 
-  if(plotType == 2)
-  {
-    #melt <- NULL
-    Percent_of_Missing_Values <- NULL
-    Error_Values <- NULL
-    Methods <- NULL
+  # data for line or bar
+  toplo <- data.frame(dataIn[-1])
+  toplo <- melt(toplo, id.var = 'MissingPercent')
+  toplo$MissingPercent <- factor(toplo$MissingPercent)
+  names(toplo) <- c('Percent of missing observations', 'Methods', 'Error value')
 
-    qq1 <-  as.character(dataIn[[1]])
-    qq <- data.frame(dataIn[-1])
-    #qq1 <- dataIn$Parameter
+  # barplot
+  if(plotType == 'bar'){
 
-    melted <- melt(qq, id.vars = "Missing_Percent")
-    colnames(melted) <- c("Percent_of_Missing_Values", "Methods", "Error_Values")
-    d <- ggplot(data=melted, aes(x=Percent_of_Missing_Values, y=Error_Values, group=Methods, color=Methods)) + labs(title = qq1) + geom_line()
+    p <- ggplot(toplo, aes(x = `Percent of missing observations`, y = `Error value`)) +
+      ggtitle(dataIn$Parameter) +
+      geom_bar(aes(fill = Methods), stat = 'identity', position = 'dodge') +
+      theme_bw()
+
+    return(p)
+
   }
 
-  if(plotType == 1)
-  {
-    q1 <-  as.character(dataIn[[1]])
-    q <- data.frame(dataIn)
-    q2 <- q[-1]
-    hd <- q2[1]
-    head <- as.numeric(unlist(hd))
-    q3 <- q2[-1]
-    meth <- names(q3)
-    q4 <- t(q3)
-    q5 <- data.frame(q4)
-    names(q5) <- head
+  # line plot
+  if(plotType == 'line'){
 
-    args <- list(...)
-    y <- as.matrix(q5)
-    if (length(args) == 0)
-    {
-      d <- barplot(y, main=q1, ylab="Error Value", xlab = "% of Missing Values", beside=TRUE,
-                   col= 1:nrow(q5), legend.text = meth, args.legend = list(x="topleft", bg = "NA"))
-      # return(d)
-    }
-    else
-    {
-      d <- barplot(as.matrix(q5), beside=TRUE, legend.text = meth, col= 1:nrow(q5),...)
-      # return(d)
-    }
+    p <- ggplot(toplo, aes(x = `Percent of missing observations`, y = `Error value`, group = Methods)) +
+      ggtitle(dataIn$Parameter) +
+      geom_line() +
+      geom_point(aes(fill = Methods), shape = 21, size = 5, alpha = 0.75) +
+      theme_bw()
+
+    return(p)
+
   }
-return(d)
+
 }

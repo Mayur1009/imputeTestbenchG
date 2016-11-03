@@ -2,33 +2,30 @@
 % Please edit documentation in R/plot_errors.R
 \name{plot_errors}
 \alias{plot_errors}
+\alias{plot_errors.errprof}
 \title{Function to plot the Error Comparison}
 \usage{
-plot_errors(dataIn, plotType, ...)
+plot_errors(dataIn, ...)
+
+\method{plot_errors}{errprof}(dataIn, plotType = c("boxplot"), ...)
 }
 \arguments{
-\item{dataIn}{as input data in list format (returned by function inpute_errors())}
+\item{dataIn}{an errprof object returned from \code{\link{impute_errors}}}
 
-\item{plotType}{as parameter to decide Plot Type to achieve: 1: Barplot, 2: Line plot}
+\item{plotType}{chr string indicating plot type, accepted values are \code{"boxplot"}, \code{"bar"}, or \code{"line"}}
 
-\item{\dots}{as additive functions for plot}
+\item{\dots}{arguments passed to or from other methods}
 }
 \value{
-It returns the Error comparison for different methods
+A ggplot object that can be further modified.  The entire range of errors are shown if \code{plotType = "boxplot"}, otherwise the averages are shown if \code{plotType = "bar"} or \code{"line"}.
 }
 \description{
 Function to plot the Error Comparison
 }
 \examples{
-# aa <- impute_errors()
-# bb <- plot_errors(aa)
-# bb
-
-# cc <- impute_errors()
-# dd <- plot_errors(dataIn = cc, plotType = 1, main = "Bar plot",
-#         args.legend = list(x="topleft", bg = "NA"))
-
-# cc <- impute_errors()
-# dd <- plot_errors(dataIn = cc, plotType = 2)
+aa <- impute_errors()
+plot_errors(aa)
+plot_errors(aa, plotType = 'bar')
+plot_errors(aa, plotType = 'line')
 }
 
