@@ -1,4 +1,4 @@
-2cf2fc6973220b1979d0acb588664d56 *DESCRIPTION
+76d90d52125b08486515586221652362 *DESCRIPTION
 a95346368f90f0a0ffc8ea6378937030 *NAMESPACE
 ca637fa32ce8e9f39a0c42b4aafdc181 *R/error_functions.R
 a5cf0421cd1e2bb30f44e79dbfada0ce *R/globalVariables.R
@@ -7,12 +7,12 @@ d694d4149d4a5141d88eb2ff850d2618 *R/plot_errors.R
 05b19273035f75ac70d562f751b8a4ff *R/plot_impute.R
 0031f30fd9928c73384b7be08ec7e816 *R/print.errprof.R
 49ae8b1cc8a4804c264f62ed36d485d5 *R/sample_dat.R
-91d964ddb230bbfebea9a1b91b4bd690 *inst/CITATION
-b626fe2f65bf9d4ac758220fe5314e78 *man/impute_errors.Rd
+07f4279fdc1b7a5aff81a1183cac29c9 *inst/CITATION
+20f0db5170f212c2ce82d638054531a3 *man/impute_errors.Rd
 037beeb0e52b54bbaa6491eb40187065 *man/mae.Rd
 e9887affa64cbe57b5175d2e8c87538b *man/mape.Rd
 15c8468c90b859ce30262f0aaac28ad8 *man/plot_errors.Rd
-b09f7108864f7a9c9ed347177a5e3bcb *man/plot_impute.Rd
+03200d9f40ca5a44e52cbd56ec936156 *man/plot_impute.Rd
 4ee992971b37cc7006b94d2c1f6e9533 *man/print.errprof.Rd
 d4ba3a0ac2efabd52dcfe11ec61119ca *man/rmse.Rd
-e3e9fc4788e1531d8ecf7fbd380b6690 *man/sample_dat.Rd
+255d13a968b36a8eb253b30f2282f6ac *man/sample_dat.Rd

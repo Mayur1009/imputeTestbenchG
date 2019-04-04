@@ -4,9 +4,10 @@
 \alias{plot_impute}
 \title{Plot imputations}
 \usage{
-plot_impute(dataIn, smps = "mcar", methods = c("na.approx", "na.interp",
-  "na.interpolation", "na.locf", "na.mean"), methodPath = NULL, blck = 50,
-  blckper = TRUE, missPercent = 50, showmiss = FALSE, addl_arg = NULL)
+plot_impute(dataIn, smps = "mcar", methods = c("na.approx",
+  "na.interp", "na.interpolation", "na.locf", "na.mean"),
+  methodPath = NULL, blck = 50, blckper = TRUE, missPercent = 50,
+  showmiss = FALSE, addl_arg = NULL)
 }
 \arguments{
 \item{dataIn}{input \code{\link[stats]{ts}} for testing}

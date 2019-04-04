@@ -1,9 +1,33 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
+bibentry(bibtype = "Article",
+  title        = "{R package imputeTestbench to Compare Imputation Methods for Univarite Time Series}",
+  author       = c(
+                  person(
+                    given = c("Marcus", "W."),
+                    family = "Beck",
+                    email = "marcusb@sccwrp.org"
+                    ),
+                  person(
+                    given = "Neeraj",
+                    family = "Bokde",
+                    email = "neeraj.bokde@students.vnit.ac.in"
+                    ),
+                  person(
+                    given = "Gualberto",
+                    family = "Ascencio-Cort\'{e}s",
+                    email = "guaasecor@upo.es"
+                    ),
+                  person(
+                    given ="Kishore",
+                    family = "Kulat",
+                    email = "kdkulat@ece.vnit.ac.in"
+                    )
+                  ),
+  journal      = "{The R Journal}",
+  year         = "2018",
+  volume       = "10",
+  number       = "1",
+  pages        = "218--233",
+  doi          = "10.32614/RJ-2018-024",
 
-bibentry(bibtype = "Manual",
-         title = "{ImputeTestBench: Test Bench for the Comparison of Imputation Methods}",
-         author = c(person("Marcus", "Beck"), person("Neeraj", "Bokde")),
-         year = year,
-         note = note,
-         url = "https://cran.r-project.org/package=imputeTestbench")
+  header       = "To cite imputeTestbench in publications use:"
+)

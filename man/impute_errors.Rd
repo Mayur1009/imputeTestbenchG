@@ -4,11 +4,12 @@
 \alias{impute_errors}
 \title{Function working as testbench for comparison of imputing models}
 \usage{
-impute_errors(dataIn, smps = "mcar", methods = c("na.approx", "na.interp",
-  "na.interpolation", "na.locf", "na.mean"), methodPath = NULL,
-  errorParameter = "rmse", errorPath = NULL, blck = 50, blckper = TRUE,
-  missPercentFrom = 10, missPercentTo = 90, interval = 10,
-  repetition = 10, addl_arg = NULL)
+impute_errors(dataIn, smps = "mcar", methods = c("na.approx",
+  "na.interp", "na.interpolation", "na.locf", "na.mean"),
+  methodPath = NULL, errorParameter = "rmse", errorPath = NULL,
+  blck = 50, blckper = TRUE, missPercentFrom = 10,
+  missPercentTo = 90, interval = 10, repetition = 10,
+  addl_arg = NULL)
 }
 \arguments{
 \item{dataIn}{input \code{\link[stats]{ts}} for testing}
