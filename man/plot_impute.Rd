@@ -5,7 +5,7 @@
 \title{Plot imputations}
 \usage{
 plot_impute(dataIn, smps = "mcar", methods = c("na.approx",
-  "na.interp", "na.interpolation", "na.locf", "na.mean"),
+  "na.interp", "na_interpolation", "na.locf", "na_mean"),
   methodPath = NULL, blck = 50, blckper = TRUE, missPercent = 50,
   showmiss = FALSE, addl_arg = NULL)
 }

@@ -5,7 +5,7 @@
 \title{Function working as testbench for comparison of imputing models}
 \usage{
 impute_errors(dataIn, smps = "mcar", methods = c("na.approx",
-  "na.interp", "na.interpolation", "na.locf", "na.mean"),
+  "na.interp", "na_interpolation", "na.locf", "na_mean"),
   methodPath = NULL, errorParameter = "rmse", errorPath = NULL,
   blck = 50, blckper = TRUE, missPercentFrom = 10,
   missPercentTo = 90, interval = 10, repetition = 10,
@@ -45,13 +45,15 @@ Returns an error comparison for imputation methods as an \code{errprof} object. 
 Function working as testbench for comparison of imputing models
 }
 \details{
-The default methods for \code{impute_errors} are \code{\link[zoo]{na.approx}}, \code{\link[forecast]{na.interp}}, \code{\link[imputeTS]{na.interpolation}}, \code{\link[zoo]{na.locf}},  and \code{\link[imputeTS]{na.mean}}.  See the help file for each for additional documentation. Additional arguments for the imputation functions are passed as a list of lists to the \code{addl_arg} argument, where the list contains one to many elements that are named by the \code{methods}. The elements of the master list are lists with arguments for the relevant methods. See the examples.
+The default methods for \code{impute_errors} are \code{\link[zoo]{na.approx}}, \code{\link[forecast]{na.interp}}, \code{\link[imputeTS]{na_interpolation}}, \code{\link[zoo]{na.locf}},  and \code{\link[imputeTS]{na_mean}}.  See the help file for each for additional documentation. Additional arguments for the imputation functions are passed as a list of lists to the \code{addl_arg} argument, where the list contains one to many elements that are named by the \code{methods}. The elements of the master list are lists with arguments for the relevant methods. See the examples.
 
 A user-supplied function can also be passed to \code{methods} as an additional imputation method.  A character string indicating the path of the function must also be supplied to \code{methodPath}.  The path must point to a function where the first argument is the time series to impute.
 
 An alternative error function can also be passed to \code{errorParameter} if \code{errorPath} is not \code{NULL}.  The function specified in \code{errorPath} must have two arguments where the first is a vector for the observed time series and the second is a vector for the predicted time series.
 
 The \code{smps} argument indicates the type of sampling for generating missing data.  Options are \code{smps = 'mcar'} for missing completely at random and \code{smps = 'mar'} for missing at random.  Additional information about the sampling method is described in \code{\link{sample_dat}}. The relevant arguments for \code{smps = 'mar'} are \code{blck} and \code{blckper} which greatly affect the sampling method.
+
+Infinite comparisons are removed with a warning if \code{errorParameter = 'mape'}. This occurs if any of the observed values in the original time series are zero.  Error estimates for such datasets are evaluated only for non-zero observations.
 }
 \examples{
 \dontrun{
@@ -75,8 +77,8 @@ aa <- impute_errors(dataIn = nottem, errorParameter = 'mae')
 aa
 plot_errors(aa)
 
-# passing addtional arguments to imputation methods
-impute_errors(dataIn = nottem, addl_arg = list(na.mean = list(option = 'mode')))
+# passing additional arguments to imputation methods
+impute_errors(dataIn = nottem, addl_arg = list(na_mean = list(option = 'mode')))
 }
 }
 \seealso{
