@@ -1,0 +1,46 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# imputeTestbenchG
+
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/imputeTestbenchG)](https://CRAN.R-project.org/package=imputeTestbenchG)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+
+
+## Installation
+``` r
+# install.packages("devtools")
+devtools::install_github("Mayur1009/imputeTestbenchG")
+```
+
+####Load the package:
+
+```{r, eval = FALSE}
+library(imputeTestbench)
+```
+```{r, echo = F, message = F, warning = F}
+devtools::load_all()
+```
+
+#### Basic use
+
+```{r message = F, warning = F}
+a <- impute_errors(data = nottem)
+a
+plot_errors(a, plotType = 'line')
+```
