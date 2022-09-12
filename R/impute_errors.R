@@ -28,7 +28,7 @@
 #' @import forecast
 #' @importFrom imputeTS na_interpolation na_mean
 #' @importFrom stats ts
-#' @import zoo
+#' @import zoo parallel
 #'
 #' @seealso \code{\link{sample_dat}}
 #'
@@ -61,7 +61,7 @@
 #' # passing additional arguments to imputation methods
 #' impute_errors(dataIn = nottem, addl_arg = list(na_mean = list(option = 'mode')))
 #' }
-impute_errors <- function(dataIn, smps = 'mcar', methods = c("na.approx", "na.interp", "na_interpolation", "na.locf", "na_mean"),  methodPath = NULL, errorParameter = 'rmse', errorPath = NULL, blck = 50, blckper = TRUE, missPercentFrom = 10, missPercentTo = 90, interval = 10, repetition = 10, addl_arg = NULL)
+impute_errors <- function(dataIn, smps = 'mcar', methods = c("na.approx", "na.interp", "na_interpolation", "na.locf", "na_mean"),  methodPath = NULL, errorParameter = 'rmse', errorPath = NULL, blck = 50, blckper = TRUE, missPercentFrom = 10, missPercentTo = 90, interval = 10, repetition = 10, addl_arg = NULL, n_cores = detectCores())
 {
 
   # source method if provided
@@ -117,11 +117,11 @@ impute_errors <- function(dataIn, smps = 'mcar', methods = c("na.approx", "na.in
       toeval <- gsub(',)', ')', toeval)
 
       # iterate through each repetition, get predictions, get error
-      errs <- lapply(out, function(y){
+      errs <- mclapply(out, function(y){
         filled <- eval(parse(text = toeval))
         errout <- paste0(errorParameter, '(dataIn, filled)')
         eval(parse(text = errout))
-        })
+        },mc.cores=n_cores)
 
       # append to master list
       errall[[method]][[x]] <- unlist(errs)
@@ -132,7 +132,7 @@ impute_errors <- function(dataIn, smps = 'mcar', methods = c("na.approx", "na.in
 
   ##
   # summarize for output
-  out <- lapply(errall, function(x) unlist(lapply(x, mean)))
+  out <- mclapply(errall, function(x) unlist(lapply(x, mean)), mc.cores=n_cores)
   out <- c(list(Parameter = errorParameter, MissingPercent = percs), out)
 
   # create errprof object

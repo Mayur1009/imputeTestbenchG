@@ -4,8 +4,15 @@
 \alias{sample_dat}
 \title{Sample time series data}
 \usage{
-sample_dat(datin, smps = "mcar", repetition = 10, b = 10,
-  blck = 50, blckper = TRUE, plot = FALSE)
+sample_dat(
+  datin,
+  smps = "mcar",
+  repetition = 10,
+  b = 10,
+  blck = 50,
+  blckper = TRUE,
+  plot = FALSE
+)
 }
 \arguments{
 \item{datin}{input numeric vector}
