@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 devtools::install_github("Mayur1009/imputeTestbenchG")
 ```
 
-####Load the package:
+#### Load the package:
 
 ```{r, eval = FALSE}
 library(imputeTestbench)
