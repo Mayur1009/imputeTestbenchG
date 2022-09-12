@@ -8,7 +8,7 @@ Description: Provides a test bench for the comparison of missing data imputation
     different error metrics. Proposed imputation methods and alternative error 
     metrics can be used.
 Imports: dplyr, forecast, ggplot2, imputeTS, reshape2, stats, tidyr,
-        zoo, doParallel, parallel
+        zoo, doParallel, parallel, foreach
 BugReports: https://github.com/Mayur1009/imputeTestbenchG/issues
 License: CC0
 Authors@R: c(

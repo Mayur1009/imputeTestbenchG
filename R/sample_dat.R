@@ -18,7 +18,8 @@
 #'
 #' @export
 #'
-#' @import dplyr ggplot2
+#' @import dplyr ggplot2 doParallel
+#' @importFrom foreach '%dopar%' foreach
 #'
 #' @examples
 #' a <- rnorm(1000)
@@ -54,21 +55,28 @@ sample_dat <- function(datin, smps = 'mcar', repetition = 10, b = 10, blck = 50,
   pool <- 2:upp
   torm <- round(length(datin) * b/100)
   out <- vector('list', length = repetition)
-
+  
   # sampling complately at random
   if(smps == 'mcar'){
 
     # label for plot
     lab <- paste0('b = ', b, ', smps = "', smps, '"')
 
-    for(i in 1:repetition){
-
+    # for(i in 1:repetition){
+    # 
+    #   c <- sample(pool, torm, replace = FALSE)
+    #   datsmp <- datin
+    #   datsmp[c] <- NA
+    #   out[i] <- data.frame(datsmp)
+    # 
+    # }
+    
+    out2 <- foreach(i = 1:repetition) %dopar% {
       c <- sample(pool, torm, replace = FALSE)
       datsmp <- datin
       datsmp[c] <- NA
-      out[i] <- data.frame(datsmp)
-
-      }
+      datsmp
+    }
 
   }
 
@@ -99,12 +107,57 @@ sample_dat <- function(datin, smps = 'mcar', repetition = 10, b = 10, blck = 50,
     blck_sd <- floor(torm/blck)
 
     # create samples for each repetition
-    for(i in 1:repetition){
-
+    # for(i in 1:repetition){
+    # 
+    #   # pool is the number of obs up to the max minus blck size
+    #   # ensures that those on the right do not overlap the end
+    #   pool <- 2:(length(datin) - blck + 1)
+    # 
+    #   # initial grab
+    #   grbs <- sample(pool, blck_sd, replace = F) %>%
+    #     sapply(function(x) x:(x + blck - 1)) %>%
+    #     c %>%
+    #     unique %>%
+    #     .[. <= upp] %>%
+    #     sort
+    # 
+    #   # adjust sampling pool and number of samples left
+    #   pool <- 2:upp %>%
+    #     .[!. %in% grbs]
+    #   lft <- torm - length(grbs)
+    # 
+    #   # continue sampling one block at a time until enough samples in missper
+    #   while(lft > 0){
+    # 
+    #     # take one sample with block size as minimum between block of samples left
+    #     grbs_tmp <- sample(pool, 1, replace = F) %>%
+    #           .:(. + pmin(lft, blck) - 1)
+    # 
+    #     # append new sample to initial grab
+    #     grbs <- c(grbs, grbs_tmp) %>%
+    #       unique %>%
+    #       sort %>%
+    #       .[. <= upp]
+    # 
+    #     # update samples left and sample pool
+    #     lft <- torm - length(grbs)
+    # 
+    #     pool <- pool[!pool %in% grbs]
+    # 
+    #   }
+    # 
+    # # append for each repetition
+    # datsmp <- datin
+    # datsmp[grbs] <- NA
+    # out[i] <- data.frame(datsmp)
+    # 
+    # }
+    
+    out2 <- foreach(i = 1:repetition) %dopar% {
       # pool is the number of obs up to the max minus blck size
       # ensures that those on the right do not overlap the end
       pool <- 2:(length(datin) - blck + 1)
-
+      
       # initial grab
       grbs <- sample(pool, blck_sd, replace = F) %>%
         sapply(function(x) x:(x + blck - 1)) %>%
@@ -112,41 +165,41 @@ sample_dat <- function(datin, smps = 'mcar', repetition = 10, b = 10, blck = 50,
         unique %>%
         .[. <= upp] %>%
         sort
-
+      
       # adjust sampling pool and number of samples left
       pool <- 2:upp %>%
         .[!. %in% grbs]
       lft <- torm - length(grbs)
-
+      
       # continue sampling one block at a time until enough samples in missper
       while(lft > 0){
-
+        
         # take one sample with block size as minimum between block of samples left
         grbs_tmp <- sample(pool, 1, replace = F) %>%
-              .:(. + pmin(lft, blck) - 1)
-
+          .:(. + pmin(lft, blck) - 1)
+        
         # append new sample to initial grab
         grbs <- c(grbs, grbs_tmp) %>%
           unique %>%
           sort %>%
           .[. <= upp]
-
+        
         # update samples left and sample pool
         lft <- torm - length(grbs)
-
+        
         pool <- pool[!pool %in% grbs]
-
+        
       }
-
-    # append for each repetition
-    datsmp <- datin
-    datsmp[grbs] <- NA
-    out[i] <- data.frame(datsmp)
-
+      
+      # append for each repetition
+      datsmp <- datin
+      datsmp[grbs] <- NA
+      datsmp
     }
 
   }
 
+  out <- out2
   # outplot for plot, otherwise return sampled data
   if(plot){
 

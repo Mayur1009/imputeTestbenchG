@@ -28,7 +28,8 @@
 #' @import forecast
 #' @importFrom imputeTS na_interpolation na_mean
 #' @importFrom stats ts
-#' @import zoo parallel
+#' @import zoo parallel doParallel
+#' @importFrom foreach '%dopar%' foreach
 #'
 #' @seealso \code{\link{sample_dat}}
 #'
@@ -83,6 +84,8 @@ impute_errors <- function(dataIn, smps = 'mcar', methods = c("na.approx", "na.in
   # check if errorParameter is okay
   if(!exists(errorParameter))
     stop(errorParameter, ' does not exist')
+  
+  registerDoParallel(cores = n_cores)
 
   # missing percentages to evaluate
   percs <- seq(missPercentFrom, missPercentTo, interval)
